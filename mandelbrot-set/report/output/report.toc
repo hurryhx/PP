@@ -1,0 +1,45 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Instruction to Run the Program}{3}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Intro to Mandelbrot set}{3}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Design \& Approach}{3}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Overview}{3}{subsection.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2} {\it OpenMP} }{3}{subsection.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3} {\it pthread} }{3}{subsection.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4} {\it MPI} }{4}{subsection.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5}Coloring Algorithm}{4}{subsection.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6}User Interface}{5}{subsection.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Result \& Analysis}{6}{section.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1} {\it OpenMP} \nobreakspace {}as Backend}{6}{subsection.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2} {\it pthread} \nobreakspace {}as Backend}{7}{subsection.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3} {\it MPI} \nobreakspace {}as Backend}{8}{subsection.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Strong Scalability}{9}{subsection.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Figure}{9}{section.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Experience}{12}{section.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Screenshots}{13}{section.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Source Code}{13}{section.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1}Worker}{13}{subsection.8.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.2}Gtk & main}{21}{subsection.8.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3}Function}{26}{subsection.8.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.4}Others}{28}{subsection.8.4}

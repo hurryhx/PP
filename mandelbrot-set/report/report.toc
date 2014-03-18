@@ -1,0 +1,37 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Instruction to Run the Program}{2}{section.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Intro to Mandelbrot set}{2}{section.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Design \& Approach}{2}{section.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Overview}{2}{subsection.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2} {\it OpenMP} }{2}{subsection.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3} {\it pthread} }{2}{subsection.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4} {\it MPI} }{3}{subsection.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5}Coloring Algorithm}{3}{subsection.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6}User Interface}{4}{subsection.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Result \& Analysis}{5}{section.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1} {\it OpenMP} \nobreakspace {}as Backend}{5}{subsection.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2} {\it pthread} \nobreakspace {}as Backend}{6}{subsection.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3} {\it MPI} \nobreakspace {}as Backend}{7}{subsection.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Figure}{8}{section.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Screenshots}{8}{section.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Experience}{8}{section.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8}Source Code}{8}{section.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Command Line Help}{10}{appendix.A}

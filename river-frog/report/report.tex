@@ -1,0 +1,188 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{zhspacing,url,amsmath,amssymb,verbatim}
+\zhspacing
+\usepackage{listings}
+\usepackage[hyperfootnotes=false,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[sorting=none]{biblatex}
+%\usepackage[dvips]{graphicx}
+\usepackage{minted}
+\usepackage{subfigure}
+\usepackage{indentfirst}
+\usepackage{cases}
+\usepackage{environ}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+%\usepackage{tikz}
+%\usepackage{dot2texi}
+
+\input{mint-defs.tex}
+
+\newcommand{\figref}[1]{\hyperref[fig:#1]{Figure\ref*{fig:#1}}}
+\newcommand{\tableref}[1]{\hyperref[table:#1]{Table\ref*{table:#1}}}
+\newcommand{\centerize}[1]{\begin{center} #1 \end{center}}
+
+\newcommand{\cmd}[1]{{\it #1}}
+\newcommand{\ccmd}[1]{\centerize{\cmd{#1}}}
+
+\newcommand{\proj}{River and Frog Arcade Game}
+
+\title{\proj ~using pthread}
+\author{Xin Huang\\ Dept. of CST, THU\\ ID: 2011011253}
+\date{\today}
+
+\addbibresource{refs.bib}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+	A \proj ~implemented with gtkmm and pthread.
+
+	This is {\it homework 2} for course {\it Parallel Programming}
+
+	{\bf Keyword} \proj, pthread
+\end{abstract}
+
+\tableofcontents
+
+\clearpage
+
+\section{Instruction}
+	\large
+	\subsection{Prerequisite}
+	This program uses {\it gtkmm-3.0}(along with glib and gdkmm) and {\it pthread} as its back end, so you {\bf MUST} have
+		them installed.
+	\subsection{Compilation}
+		Invoke \cmd{make} to compile the source code.  Also you can
+		set environment variable \cmd{DEFINES="-DUSE\_PTHREAD"} to enable pthread functionality.
+		Executable is sorted in \cmd{bin/river-and-frog}
+	\subsection{Execution}
+		Invoke \ccmd{make run} to run with the default setting.
+
+		For advanced options, see section~\ref{sec:option}
+		You can stretch the window for bigger size.
+
+\section{Introduction}
+	You are to control a frog jump over the river
+	by stepping on wood floating in the river. The frog dies if it jumps into
+	the river(maybe crocodiles waiting with hunger).
+
+\section{Control Setting}
+	\begin{itemize}
+		\item
+			In single mode, Player 1 control the frog using arrow keys.
+		\item
+			In two player mode, Player 1 use arrow keys, and player two use \cmd{w, s, a, d} keys.
+	\end{itemize}
+
+\section{Programming Design}
+	\begin{itemize}
+	\large
+		\item
+			The program is written with Gtkmm and pthread. This program has
+			Game, Layer, Wood and Frog. Game deals with the start and update.
+			Layer calculates the speed and position of each wood on the layer.
+			Wood loads the image and grasp the position of the frog(is the
+			frog on the wood). Frog works for the movement of the frog.
+		\item
+			I use Glib::timeout to refresh the Game and the canvas. Game is
+			the conductor. Every time the Game::update executes the speed and
+			position of woods and frogs will be computed and update the canvas.
+		\item
+			Multithread programming is used in Layer. The number of threads
+			is same to the number of layers. Each thread computes the collision
+			on its own. When all collision computation finished(use
+			pthread join to block), the update function will move the wood
+			and the frog. And then the update loop is finished.
+		\item
+			Game controls Layer, Layer controls Wood, Wood controls Frog.
+		\item
+			Game::start() first invoke Game::init() first to initialize the canvas,  woods
+			and the frogs. Then invoke sigc::mem_fun and Glib::signal_timeout
+			to refresh the Game::update(). The Game::update() use a timer to
+			count the remain time to let the Layer calculate the every loop's
+			time.
+		\item
+			Layer::update() is run in each thread. Every thread will get a
+			layer and calculate the woods collisions on its layer. The layer
+			does the calculation and the movement of the woods on the layer.
+		\item
+			Each time the Layer would move only one wood that will immediately
+			collides with another. The collision form is elastic collision.
+			When the remain time is run out, the thread will wait for other
+			threads to stop.
+		\item
+			When Layer::update() finishes the Game::update() will move the frog.
+			The frog can move to up, down, left, right. The message is deal with
+			Gdk Keyval.
+		\item
+			The frog will go up to the next layer if user presses left key.
+			The Frog object will be removed from the current Wood and jump to
+			(add to) the upper Wood. But if there is no woods, the frog will be
+			removed and added to the basement.
+
+	\end{itemize}
+
+\section{Features}
+	\large
+	\begin{itemize}
+		\item
+			River consists of multiple layers, wood slabs can only move in one layer.
+		\item
+			Wood slabs have masses proportional to its width.
+
+		\item
+			By default setting, when two woods hit, the resulting speed of
+			the wood slabs obeys the conservation of momentum and energy.
+
+			Watch out if a large piece of wood slab's about to hit you!
+		\item
+			Wood slabs are in different size and moving in different speed.
+			The wood slabs in last layer moves really quick, so be careful
+			when you move
+		\item
+			Frog can jump between wood slabs in two different layers, but
+			can not change to wood slab in the same layer.
+		\item
+			The upper the wood slab, the faster it will be.
+		\item
+			There is a slight acceleration in frogs moving speed, and frog
+			will stop as soon as you release the control keys.
+
+			Get across the river as fast as you can!
+	\end{itemize}
+
+\section{Specification of Pthread in Program}
+	Pthread is used for calculate collisions between wood slabs.
+	During each frame, each layer is assigned a thread to calculate
+	collisions simultaneous.
+
+\section{Experience}
+	Writing a GUI program with Gtkmm is not so convenient. I wrote the program in the first
+	time, in which I need to look up the documentations and ask classmates for help. When
+	I have debug it for two day and nothing changed, I rewrite the program. Though the
+	experience is tough and not very pleasant, I now know how to write a Gtk program with
+	pthread. And now I realize it's also important to schedule the time. In the first place
+	I want to write a n-body simulation program and switch to this task, but it's too hard
+	and I waste two days. Fortunately I change my idea and I can finally finish this task.
+	Preparing and scheduling are now have to be taken in my consideration.
+
+\section{Screenshots}
+\newcommand{\scrnshts}[3]{
+	\begin{figure}[!ht]
+		\centering
+		\includegraphics[scale=#3]{#2}
+		\caption{#1}
+	\end{figure}
+}
+
+\scrnshts{Game start}{../res/1.png}{0.6}
+\scrnshts{During game}{../res/2.png}{0.6}
+\scrnshts{Game with two players}{../res/3.png}{0.6}
+
+\clearpage
+\printbibliography
+
+\end{document}
+
